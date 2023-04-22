@@ -30,10 +30,10 @@
     \begin{minipage}{0.3\textwidth}
     Wir schätzen die Parameter $(\beta_0, \beta_1)$ durch 
     \begin{align}
-        (\hbe_0, \hbe_1) = \argmin_{(\beta_0, \beta_1)} \sum_{i = 1}^n(Y_i - (\beta_0 + \beta_1 x_i))^2
+        (\hbe0, \hbe1) = \argmin_{(\beta_0, \beta_1)} \sum_{i = 1}^n(Y_i - (\beta_0 + \beta_1 x_i))^2
     \end{align}
-    und nennen $(\hbe_0, \hbe_1)$ den \tc{KQ-Schätzer von $(\beta_0, \beta_1)$} und 
-    $\hat{\eps}_i := Y_i - (\hbe_0 + \hbe_1 x_i)$ die \tc{Residuen}.
+    und nennen $(\hbe0, \hbe1)$ den \tc{KQ-Schätzer von $(\beta_0, \beta_1)$} und 
+    $\hat{\eps}_i := Y_i - (\hbe0 + \hbe1 x_i)$ die \tc{Residuen}.
     \end{minipage}
 };
 %------------ KQ Schätzer Header ---------------------
@@ -48,11 +48,11 @@
     Der KQ-Schätzer existiert und ist eindeutig, falls $\sum_{i = 1}^n (x_i - \bar{x})^2 \neq 0$. 
     Dieser lässt sich berechnen als 
     \begin{align*}
-        \hbe_1 = & \quad \frac{s_{xY}}{S_x^2} = 
+        \hbe1 = & \quad \frac{S_{xY}}{S_x^2} = 
         \frac{\frac1n\sum_{i = 1}^n (x_i - \bar{x})(Y_i - \bar{Y})}{\frac1n\sum_{i = 1}^n (x_i - \bar{x})^2}\\
-        \hbe_0 = & \quad \bar{Y} - \hbe_1 \bar{x}.
+        \hbe0 = & \quad \bar{Y} - \hbe1 \bar{x}.
     \end{align*}
-    Durch differenzieren von der Gleichung (1) erhält man $(\hbe_0, \hbe_1)$ als Lösung der 
+    Durch differenzieren von der Gleichung (1) erhält man $(\hbe0, \hbe1)$ als Lösung der 
     \tc{Normalengleichungen}
     \begin{align*}
         \sumin \hat{\eps}_i = 0\\
@@ -87,14 +87,55 @@
 \end{tikzpicture}
     
 
+%------------ Eigenschaften des KQ-Schätzers ---------------
+\begin{tikzpicture}
+    \node [mybox] (box){%
+        \begin{minipage}{0.3\textwidth}
+        Gegeben dem einfachen linearen Modell, gilt für den KQ-Schätzer $(\hbe0,\hbe1)$
+        \begin{itemize}
+            \item Erwartungstreue: $\E(\hbe0,\hbe1) = (\gb0,\gb1)$.
+            \item $\V(\hbe1) = \frac{\ssd}{nS_x^2}$ und $\V(\hbe0) = \ssd (\frac 1n + \frac{\bar{x}^2}{nS_x^2})$.
+            \item $(\hbe0,\hbe1)$ ist der maximum-likelihood Schätzer.
+        \end{itemize}
+        \end{minipage}
+    };
+%------------ Eigenschaften des KQ-Schätzers Header ---------------------
+\node[fill = purple, text=white, font=\bfseries, right=10pt] at (box.north west) {Eigenschaften des KQ-Schätzers};
+\end{tikzpicture}
+
+
+%------------ Schätzer für $\ssd$ ---------------
+\begin{tikzpicture}
+    \node [mybox] (box){%
+        \begin{minipage}{0.3\textwidth}
+        Gegeben dem einfachen linearen Modell mit\\$\eps_i \sim \Ncal(0,\ssd)$, gilt
+        $$\hat{\sd}^2 := \frac{1}{n-2}\sumin \hat{\eps}_i^2$$ 
+        ist ein erwartungstreuer Schätzer von $\ssd$ und 
+        $$\frac{n-2}{\ssd}\hat{\sd}^2 \sim \chi_{n-2}^2.$$
+        Der KQ-Schätzer $(\hbe0,\hbe1)$ und der Schätzer $\hat{\sd}^2$ sind stoch.unabhängig.
+        \end{minipage}
+    };
+    %------------ chätzer für $\ssd$ Header ---------------------
+    \node[fill = purple, text=white, font=\bfseries, right=10pt] at (box.north west) {Schätzer für $\ssd$};
+    \end{tikzpicture}
     
 
 
-
-
-
-
-
+%------------ Konfidenzintervalle für $\gb0$ und $\gb1$ ---------------
+\begin{tikzpicture}
+    \node [mybox] (box){%
+        \begin{minipage}{0.3\textwidth}
+        Gegeben dem einfachen linearen Modell mit\\$\eps_i \sim \Ncal(0,\ssd)$, gilt für $\hbe1$ und $\hbe0$
+        $$\frac{\hbe1 - \gb1}{\hat{\sd}_{\hbe1}} \sim t_{n-2} \text{ mit } \hat{\sd}_{\hbe1} 
+        := \sqrt{\frac{\hat{\sd}^2}{\sumin (x_i - \bar{x})^2}}$$
+        $$\frac{\hbe0 - \gb0}{\hat{\sd}_{\hbe0}} \sim t_{n-2} \text{ mit } \hat{\sd}_{\hbe0} 
+        := \sqrt{\hat{\sd}^2 \frac{\sumin x_i^2}{n\sumin (x_i - \bar{x})^2}}$$
+        \end{minipage}
+    };
+    %------------  Konfidenzintervalle für $\gb0$ und $\gb1$ Header ---------------------
+    \node[fill = purple, text=white, font=\bfseries, right=10pt] at (box.north west) 
+    {Konfidenzintervalle für $\gb0$ und $\gb1$};
+    \end{tikzpicture}
 
 
 
@@ -108,11 +149,6 @@
 %------------ Überschrift Header ---------------------
 \node[fill = black, text=white, font=\bfseries, right=10pt] at (box.north west) {Überschrift};
 \end{tikzpicture}
-
-
-
-
-
 
 
 
