@@ -130,12 +130,48 @@
         := \sqrt{\frac{\hat{\sd}^2}{\sumin (x_i - \bar{x})^2}}$$
         $$\frac{\hbe0 - \gb0}{\hat{\sd}_{\hbe0}} \sim t_{n-2} \text{ mit } \hat{\sd}_{\hbe0} 
         := \sqrt{\hat{\sd}^2 \frac{\sumin x_i^2}{n\sumin (x_i - \bar{x})^2}}$$
+        Damit können wir Konfidenzintervalle zum Niveau $1 - \alpha$ für $\gb1$ und $\gb0$ erzeugen:
+        $$[\ \hbe1 - \hat{\sd}_{\hbe1}t_{1 - \alpha/2}(n-2); \hbe1 + \hat{\sd}_{\hbe1}t_{1 - \alpha/2}(n-2) ]\ $$
+        $$ [\ \hbe0 - \hat{\sd}_{\hbe0}t_{1 - \alpha/2}(n-2); \hbe0 + \hat{\sd}_{\hbe0}t_{1 - \alpha/2}(n-2) ]\ $$
         \end{minipage}
     };
     %------------  Konfidenzintervalle für $\gb0$ und $\gb1$ Header ---------------------
     \node[fill = purple, text=white, font=\bfseries, right=10pt] at (box.north west) 
     {Konfidenzintervalle für $\gb0$ und $\gb1$};
     \end{tikzpicture}
+
+%------------ Quadratsummenzerlegung ---------------
+\begin{tikzpicture}
+    \node [mybox] (box){%
+        \begin{minipage}{0.3\textwidth}
+        Gegeben sei ein einfaches linearen Modell mit\\$\eps_i \sim \Ncal(0,\ssd)$ und 
+        $\hat{Y}_i := \hbe0 + \hbe1x_i$. Dann gilt
+        $$ \underbrace{\sumin (Y_i - \bar{Y})^2}_{\text{SST}} = \underbrace{\sumin (Y_i - \hat{Y}_i)^2}_{\text{SSE}} 
+        - \underbrace{\sumin(\hat{Y}_i - \bar{Y})^2}_{\text{SSM}} .$$
+        \begin{align*}
+            & \text{SST(otal):} & \text{Gesamtstreuung von Y}\\
+            & \text{SSE(rror):} & \text{Streuung der Residuen}\\
+            & \text{SSM(odel):} & \text{Streuung, die das Modell erklärt}\\
+        \end{align*}
+        \end{minipage}
+    };
+%------------ Quadratsummenzerlegung Header ---------------------
+\node[fill = purple, text=white, font=\bfseries, right=10pt] at (box.north west) {Quadratsummenzerlegung};
+\end{tikzpicture}
+    
+%------------ Bestimmtheitsmaß ---------------
+\begin{tikzpicture}
+    \node [mybox] (box){%
+        \begin{minipage}{0.3\textwidth}
+        Unter Verwendung der obigen Notation definieren wir das \tc{Bestimmtheitsmaß} als
+        $$R^2 = \frac{\text{SSM}}{\text{SST}} = 1 - \frac{\text{SSE}}{\text{SST}}.$$
+        Es gilt $$R^2 = r_{xY}^2 = \frac{S_{xY}}{S_xS_Y}$$
+        \end{minipage}
+    };
+    %------------ Bestimmtheitsmaß Header ---------------------
+    \node[fill = black, text=white, font=\bfseries, right=10pt] at (box.north west) {Bestimmtheitsmaß};
+    \end{tikzpicture}
+
 
 
 
