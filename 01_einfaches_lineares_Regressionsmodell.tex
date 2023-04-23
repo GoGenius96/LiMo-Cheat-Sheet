@@ -70,14 +70,12 @@
 \begin{tikzpicture}
     \node [mybox] (box){%
         \begin{minipage}{0.3\textwidth}
-        Wir betrachten die Zufallsvariable $Y = \gb0 + \gb1 X$
+        Für $Y_i = \gb0 + \gb1 x_i + \eps_i \quad ,i = 1,\dots,n$
+        mit \\$\E(Y_i|x_i) = \gb0 + \gb1x_i$ gilt,
         \begin{itemize}
-            \item Wenn $X$ um eine \textbf{Einheit} steigt, 
+            \item wenn $x$ um eine \textbf{Einheit} steigt, 
             dann steigt $Y$ \textbf{im Erwartungswert} um $\beta_1$ Einheiten.
             \item Es gilt $\beta_0 = \E(Y|X = 0)$.
-        \end{itemize}
-        Wir betrachten $Y_i = \gb0 + \gb1 x_i + \eps_i, \quad i = 1,\dots, n$
-        \begin{itemize}
             \item Der Parameter $\sd$ die erwartete Abweichung der $Y_i$-Werte von der Regressionsgerade an.
         \end{itemize}
         \end{minipage}
@@ -115,7 +113,7 @@
         Der KQ-Schätzer $(\hbe0,\hbe1)$ und der Schätzer $\hat{\sd}^2$ sind stoch.unabhängig.
         \end{minipage}
     };
-    %------------ chätzer für $\ssd$ Header ---------------------
+    %------------ Schätzer für $\ssd$ Header ---------------------
     \node[fill = purple, text=white, font=\bfseries, right=10pt] at (box.north west) {Schätzer für $\ssd$};
     \end{tikzpicture}
     
@@ -165,26 +163,126 @@
         \begin{minipage}{0.3\textwidth}
         Unter Verwendung der obigen Notation definieren wir das \tc{Bestimmtheitsmaß} als
         $$R^2 = \frac{\text{SSM}}{\text{SST}} = 1 - \frac{\text{SSE}}{\text{SST}}.$$
-        Es gilt $$R^2 = r_{xY}^2 = \frac{S_{xY}}{S_xS_Y}$$
+        Es gilt $$R^2 = r_{xY}^2 = \frac{S_{xY}}{S_xS_Y},$$
+        wobei $r_{xY}$ der Bravais-Pearson Korrel.koeffizient ist.
         \end{minipage}
     };
     %------------ Bestimmtheitsmaß Header ---------------------
     \node[fill = black, text=white, font=\bfseries, right=10pt] at (box.north west) {Bestimmtheitsmaß};
     \end{tikzpicture}
 
+%------------ Interpretation von R^2 ---------------
+\begin{tikzpicture}
+    \node [mybox] (box){%
+        \begin{minipage}{0.3\textwidth}
+        \begin{itemize}
+            \item $R^2$ beschreibt den Anteil der Varianz von $Y$, die durch $x$ erklärt wird.
+            \item $R$ ist invariant gegenüber linearen linearen Transformationen von $x$ und $Y$.
+            \item $R$ ist symmetrisch bzgl. $x$ und $Y$.
+            \item \tc{!} $R^2$ hängt auch von der Streuung von $x$ in der Stichprobe ab.
+        \end{itemize}
+        \end{minipage}
+    };
+%------------ Interpretation von R^2 Header ---------------------
+\node[fill = blue, text=white, font=\bfseries, right=10pt] at (box.north west) {Interpretation von $R^2$};
+\end{tikzpicture}
 
 
 
-%------------ Überschrift ---------------
+%------------ Prognosewert ---------------
+\begin{tikzpicture}
+    \node [mybox] (box){%
+        \begin{minipage}{0.3\textwidth}
+        Gegeben sei ein einfaches linearen Modell mit\\$\eps_i \sim \Ncal(0,\ssd)$ und 
+        $\hat{Y}_i := \hbe0 + \hbe1x_i, \quad i = 1,\dots,n$. 
+        Sei nun eine weitere Beobachtung $x_{n+1}$ mit zugehörigem 
+        $Y_{n + 1} = \gb0 + \gb1 x_{n + 1} + \eps_{n + 1}$ gegeben. Der \tc{Prognosewert von $Y_{n+1}$} 
+        ist definiert als $\hat{Y}_{n + 1} = \hbe0 + \hbe1 x_{n + 1}$
+        \end{minipage}
+    };
+    %------------ Prognosewert Header ---------------------
+    \node[fill = black, text=white, font=\bfseries, right=10pt] at (box.north west) 
+    {Prognosewert};
+    \end{tikzpicture}
+    
+
+%------------ Prognosefehler ---------------
+\begin{tikzpicture}
+    \node [mybox] (box){%
+        \begin{minipage}{0.3\textwidth}
+        Gegeben sei ein einfaches linearen Modell, sowie eine weitere Beobachtung $x_{n+1}$ mit zugehörigem 
+        $Y_{n + 1}$ sowie der Prognosewert $\hat{Y}_{n + 1}$. Dann gilt
+        \begin{align*}
+            \E(\hat{Y}_{n + 1} - Y_{n + 1}) = {} & 0 \\
+            \V(\hat{Y}_{n + 1} - Y_{n + 1}) = {} & 
+            \ssd \Bigr[ 1 + \frac 1n + \frac{(x_{n + 1} - \bar{x})^2}{\sumin (x_i - \bar{x})^2} \Bigr]
+        \end{align*}
+        \end{minipage}
+    };
+    %------------ Prognosefehler Header ---------------------
+\node[fill = purple, text=white, font=\bfseries, right=10pt] at (box.north west) 
+{Prognosefehler};
+\end{tikzpicture}
+
+
+%------------ Prognoseintervall ---------------
 \begin{tikzpicture}
 \node [mybox] (box){%
     \begin{minipage}{0.3\textwidth}
-    
+    Gegeben sei ein einfaches linearen Modell, sowie eine weitere Beobachtung $x_{n+1}$ mit zugehörigem 
+    $Y_{n + 1}$ sowie der Prognosewert $\hat{Y}_{n + 1}$. Dann können wir für $Y_{n + 1}$ ein 
+    Konfidenzintervall zum Niveau $1 - \alpha$ konstruieren:
+    $$[\ \hat{Y}_{n+1} - \hat{\sd}_{\hat{Y}_{n+1}}t_{1 - \alpha/2}(n-2); 
+    \hat{Y}_{n+1} + \hat{\sd}_{\hat{Y}_{n+1}}t_{1 - \alpha/2}(n-2) ]\ $$
+    mit $$\hat{\sd}_{\hat{Y}_{n+1}} = \hat{\sd}^2 \Bigr[ 1 + \frac 1n + \frac{(x_{n + 1} - 
+    \bar{x})^2}{\sumin (x_i - \bar{x})^2} \Bigr].$$
     \end{minipage}
 };
-%------------ Überschrift Header ---------------------
-\node[fill = black, text=white, font=\bfseries, right=10pt] at (box.north west) {Überschrift};
+%------------ Prognoseintervall Header ---------------------
+\node[fill = purple, text=white, font=\bfseries, right=10pt] at (box.north west) {Prognoseintervall};
 \end{tikzpicture}
+
+
+%------------ R-Code ---------------
+\begin{tikzpicture}
+\node [mybox] (box){%
+    \begin{minipage}{0.3\textwidth}
+    \begin{lstlisting}
+# simuliere aus einfachem lin. Modell
+beta0 <- 3
+beta1 <- 1
+sigma <- 2
+x <- seq(from = 0, to = 10, by = 0.5)
+e <- rnorm(length(x), sd = sigma)
+y <- beta0 + beta1 * x + e
+dat <- data.frame(x, y)
+
+# Lineares Modell erzeugen
+reg = lm(y ~ x, data = dat)
+summary(reg)
+
+# Konfidenzintervalle
+confint(reg, level = 0.95)
+
+    \end{lstlisting}
+    \end{minipage}
+};
+%------------ R-Code Header ---------------------
+\node[fill = olive, text=white, font=\bfseries, right=10pt] at (box.north west) {R-Code};
+\end{tikzpicture}
+
+
+
+% %------------ Überschrift ---------------
+% \begin{tikzpicture}
+% \node [mybox] (box){%
+%     \begin{minipage}{0.3\textwidth}
+    
+%     \end{minipage}
+% };
+% %------------ Überschrift Header ---------------------
+% \node[fill = black, text=white, font=\bfseries, right=10pt] at (box.north west) {Überschrift};
+% \end{tikzpicture}
 
 
 

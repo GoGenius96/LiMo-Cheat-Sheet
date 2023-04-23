@@ -45,6 +45,17 @@
 \usepackage{colortbl}
 \usepackage{xcolor}
 \usepackage{mathtools}
+\usepackage{listings}
+
+\lstset{language=R,
+    basicstyle=\small\ttfamily,
+    stringstyle=\color{purple},
+    otherkeywords={0,1,2,3,4,5,6,7,8,9},
+    morekeywords={TRUE,FALSE},
+    deletekeywords={data,frame,length,as,character},
+    keywordstyle=\color{blue},
+    commentstyle=\color{purple},
+}
 
 
 %\usepackage{blindtext}
@@ -73,6 +84,7 @@
 % Dokumente einfügen
 
 \input{01_einfaches_lineares_Regressionsmodell}
+\input{02_multiples_ineares_Regressionsmodell}
 
 
 \end{document}
