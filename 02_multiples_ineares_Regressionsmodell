@@ -13,12 +13,12 @@
 \begin{tikzpicture}
     \node [mybox] (box){%
         \begin{minipage}{0.3\textwidth}
-        
+        test
         \end{minipage}
     };
-    %------------ Überschrift Header ---------------------
-    \node[fill = black, text=white, font=\bfseries, right=10pt] at (box.north west) {Überschrift};
-    \end{tikzpicture}
+%------------ Überschrift Header ---------------------
+\node[fill = black, text=white, font=\bfseries, right=10pt] at (box.north west) {Überschrift};
+\end{tikzpicture}
     
     
     
@@ -26,4 +26,4 @@
     
     
     
-    \end{multicols*}
+\end{multicols*}

@@ -273,6 +273,29 @@ confint(reg, level = 0.95)
 
 
 
+%------------ Vorlesung ---------------
+\begin{tikzpicture}
+\node [mybox] (box){%
+    \begin{minipage}{0.3\textwidth}
+    $R^2$ ist abhängig von $X$. Das heißt über mehrere Studien hinweg, die das gleiche messen, ist
+    $R^2$ nur vergleichbar, wenn auch $X$ vergleichbar ist. Je sichererer wir mit unserem Schätzer sein
+    wollen, desto höher sollten wir die Varianz von $X$ einstellen. Gegeben, dass der Zusammenhang tatsächlich linear
+    ist, würde eine höhere Varianz von $X$ zu einer geringeren Varianz von $\hbe1$ führen.\\
+
+    Im multiplen Reg.modell ist es KEINE Annahme, dass $x_i, x_j$ unabhängig von einander sind.
+    Es wäre nur praktisch für die Interpretation der Effekte. Das "magische" am multiplen Reg.modell
+    ist, dass ich für verschiedene Größen kontrollieren/korrigieren kann.\\
+
+    Erwartungstreue gilt auch bei abhängigkeit und normalverteilt ist nicht nötig.
+    Varianzformel benötigt unabhängigkeit.
+    \end{minipage}
+};
+%------------ Überschrift Header ---------------------
+\node[fill = black, text=white, font=\bfseries, right=10pt] at (box.north west) {Vorlesung};
+\end{tikzpicture}
+
+
+
 % %------------ Überschrift ---------------
 % \begin{tikzpicture}
 % \node [mybox] (box){%
