@@ -34,7 +34,8 @@
             \eps_1\\ \vdots \\ \eps_n
         \end{pmatrix}$.\\
         Wir nehmen dabei an, dass $\bX \in \R^{n \times (p+1)}$ eine feste 
-        Design-Matrix ist und dass $\beps \sim \Ncal(\bm0, \ssd \bI)$
+        Design-Matrix ist und dass $\beps \sim \Ncal(\bm0, \ssd \bI)$. Wir definieren
+        außerdem $p' := p+1$.
         \end{minipage}
     };
 %------------ multiple lineare Regressionsmodell Header ---------------------
@@ -122,7 +123,7 @@
 \begin{tikzpicture}
     \node [mybox] (box){%
         \begin{minipage}{0.3\textwidth}
-        Gegeben dem multiplen linearen Modell mit\\$\rang(\bX) = p+1$ gilt
+        Gegeben dem multiplen linearen Modell mit\\$\rang(\bX) = p'$ gilt
         \begin{align*}
         \hbY := & \bX\underbrace{(\bX^\top\bX)^{-1} \bX^\top \bY}_{\hbbeta} \\
         \bP :=  & \underbrace{\bX(\bX^\top\bX)^{-1} \bX^\top}_{n \times n} \\
@@ -187,15 +188,15 @@
     
 
 
-%------------ Überschrift ---------------
-\begin{tikzpicture}
-    \node [mybox] (box){%
-        \begin{minipage}{0.3\textwidth}
+% %------------ Überschrift ---------------
+% \begin{tikzpicture}
+%     \node [mybox] (box){%
+%         \begin{minipage}{0.3\textwidth}
         
-        \end{minipage}
-    };
-%------------ Überschrifts Header ---------------------
-\node[fill = black, text=white, font=\bfseries, right=10pt] at (box.north west) {Überschrift};
-\end{tikzpicture}
+%         \end{minipage}
+%     };
+% %------------ Überschrifts Header ---------------------
+% \node[fill = black, text=white, font=\bfseries, right=10pt] at (box.north west) {Überschrift};
+% \end{tikzpicture}
     
 \end{multicols*}

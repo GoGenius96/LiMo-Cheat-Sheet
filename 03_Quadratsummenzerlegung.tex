@@ -1,0 +1,35 @@
+\section*{Kapitel 3 - Quadratsummenzerlegung und statistische Inferenz im multiplen linearen Regressionsmodell}
+
+\begin{multicols*}{3}
+
+\tikzstyle{mybox} = [draw=black, fill=white, very thick,
+    rectangle, rounded corners, inner sep=10pt, inner ysep=10pt]
+\tikzstyle{fancytitle} =[fill=black, text=white, font=\bfseries]
+
+
+
+%------------ Quadratsummenzerlegung ---------------
+\begin{tikzpicture}
+    \node [mybox] (box){%
+        \begin{minipage}{0.3\textwidth}
+        Gegeben sei das multiple lineare Regressionsmodell mit
+        $\rang(\bX) = p'$. Dann gilt
+        \footnotesize{
+        $$
+        \underbrace{(\bY - \bar\bY)^\top (\bY - \bar\bY)}_{SST} =
+        \underbrace{(\bY - \hbY)^\top (\bY - \hbY)}_{SSE} + 
+        \underbrace{(\hbY - \bar\bY)^\top (\hbY - \bar\bY)}_{SSM}.
+        $$}
+
+        \begin{align*}
+        & \text{SST(otal):} & & \text{Gesamt-Quadratsumme (korrigiert)}\\
+        & \text{SSE(rror):} & &\text{Fehler-Quadratsumme}\\
+        & \text{SSM(odel):} & &\text{Modell-Quadratsumme}\\
+        \end{align*}
+        \end{minipage}
+    };
+%------------ Quadratsummenzerlegung Header ---------------------
+\node[fill = purple, text=white, font=\bfseries, right=10pt] at (box.north west) {Quadratsummenzerlegung};
+\end{tikzpicture}
+    
+\end{multicols*}
