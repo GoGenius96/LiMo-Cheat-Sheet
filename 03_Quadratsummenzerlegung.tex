@@ -31,5 +31,113 @@
 %------------ Quadratsummenzerlegung Header ---------------------
 \node[fill = purple, text=white, font=\bfseries, right=10pt] at (box.north west) {Quadratsummenzerlegung};
 \end{tikzpicture}
+
+
+%------------ Quadratsummenzerlegung ohne b0 ---------------
+\begin{tikzpicture}
+    \node [mybox] (box){%
+        \begin{minipage}{0.3\textwidth}
+        Gegeben sei das multiple lineare Regressionsmodell mit, aber ohne Absolutglied $\gb0$. Dann gilt
+        \footnotesize{
+        $$
+        \underbrace{\bY^\top \bY}_{SST^*} =
+        \underbrace{(\bY - \hbY)^\top (\bY - \hbY)}_{SSE} + 
+        \underbrace{\hbY^\top \hbY}_{SSM^*}.
+        $$}
+
+        \begin{align*}
+        & \text{$SST^*$:} & & \text{Gesamt-Quadratsumme (nicht korrigiert)}\\
+        & \text{$SSE$:} & &\text{Fehler-Quadratsumme (wie zuvor)}\\
+        & \text{$SSM^*$:} & &\text{Modell-Quadratsumme (nicht korrigiert)}\\
+        \end{align*}
+        \end{minipage}
+    };
+%------------ Quadratsummenzerlegung ohne b0 Header ---------------------
+\node[fill = purple, text=white, font=\bfseries, right=10pt] at (box.north west) 
+{Quadratsummenzerlegung ohne $\beta_0$};
+\end{tikzpicture}
+
+
+%------------ Erwartungswerte der Quadratsummen ---------------
+\begin{tikzpicture}
+    \node [mybox] (box){%
+        \begin{minipage}{0.3\textwidth}
+        Gegeben sei das multiple lineare Regressionsmodell mit den üblichen Annahmen. 
+        Wir definieren
+        $$\be = \begin{pmatrix}
+            1 \\ \vdots \\ 1
+        \end{pmatrix}  \text{ und } \bP_{\be} = \be(\be^\top \be)^{-1}\be^\top \text{ und } \bQ_{\be} = \bI - \bP_{\be}.$$
+        Dann gilt
+        \begin{align*}
+        & \E(SST^*) &&= \ssd n + \bbeta^\top \bX^\top \bX \bbeta \\
+        & \E(SST) &&= \ssd (n-1) + \bbeta^\top (\bQ_{\be}\bX)^\top (\bQ_{\be}\bX) \bbeta \\
+        & \E(SSE) &&= \ssd (n-p') \\
+        & \E(SSM^*) &&= \ssd p' + \bbeta^\top \bX^\top \bX \bbeta \\
+        & \E(SSM^*) &&= \ssd (p'-1) + \bbeta^\top (\bQ_{\be}\bX)^\top (\bQ_{\be}\bX) \bbeta
+        \end{align*}
+        Wir können diese Eigenschaften zur Konstruktion von Tests verwenden.
+        Es gilt nämlich unter anderem
+        $\bbeta = 0 \implies \E(SST^*) = \ssd n$\\
+        $\gb{1} = \dots = \gb{p} = 0 \implies \E(SSM) = \ssd (p'-1)$
+        \end{minipage}
+    };
+%------------ Erwartungswerte der Quadratsummen Header ---------------------
+\node[fill = purple, text=white, font=\bfseries, right=10pt] at (box.north west) 
+{Erwartungswerte der Quadratsummen};
+\end{tikzpicture}
     
+
+%------------ Chi-Quadrat Verteilung ---------------
+\begin{tikzpicture}
+    \node [mybox] (box){%
+        \begin{minipage}{0.3\textwidth}
+        Sei $\bZ \sim \Ncal_n(\bmu, \bI)$, so heißt $\bW = \bZ^\top\bZ = \sumin Z_i^2$ (nicht-zentral) \tc{Chi-Quadrat-verteilt} und wir schreiben
+        $$W \sim \chi^2(n, \delta).$$
+        Wir nennen $n$ die \tc{Zahl der Freiheitsgrade} und $\delta = \bmu^\top\bmu$ den \tc{Nicht-Zentralitätsparameter}. 
+        Es gilt
+        \begin{align*}
+            \E(W) &= n + \delta \\
+            \V(W) &= 2n + 4\delta \\
+        \end{align*}
+
+        \end{minipage}
+    };
+%------------ Chi-Quadrat Verteilung Header ---------------------
+\node[fill = black, text=white, font=\bfseries, right=10pt] at (box.north west) 
+{Chi-Quadrat Verteilung};
+\end{tikzpicture}
+
+%------------ t-Verteilung ---------------
+\begin{tikzpicture}
+    \node [mybox] (box){%
+        \begin{minipage}{0.3\textwidth}
+        Seien $Z \sim \Ncal(\delta, 1)$ und $W \sim \chi^2(n, 0)$ unabhängig.
+        Dann heißt $T = \frac{Z}{\sqrt{\frac{W}{n}}}$ (nicht-zentral) \tc{t-verteilt} mit $n$ \tc{Freiheitsgraden} und \tc{Nicht-Zentralitätsparameter} $\delta$ 
+        und wir schreiben $$T \sim t(n, \delta).$$
+        Es gilt
+        $$\E(T) = \delta \sqrt{\frac{n}{2}} \frac{\Gamma(\frac{n-1}{2})}{\Gamma(\frac{n}{2})} \text{ für } n > 1$$
+        \end{minipage}
+    };
+%------------ t-Verteilung Header ---------------------
+\node[fill = black, text=white, font=\bfseries, right=10pt] at (box.north west) 
+{t-Verteilung};
+\end{tikzpicture}
+
+%------------ F-Verteilung ---------------
+\begin{tikzpicture}
+    \node [mybox] (box){%
+        \begin{minipage}{0.3\textwidth}
+        Sei $W_1 \sim \chi^2(n_1, \delta)$ und $W_2 \sim \chi^2(n_2, 0)$ unabhängig.
+        Dann heißt $X =  \frac{W_1/n_1}{W_2/n_2}$ (nicht-zentral) \tc{F-verteilt} mit $n_1$ und $n_2$ \tc{Freiheitsgraden} und \tc{Nicht-Zentralitätsparameter} $\delta$
+        und wir schreiben $$X \sim F(n_1, n_2, \delta).$$
+        Es gilt
+        $$\E(X) = \frac{n_2 + \frac{n_2\delta}{n_1}}{n_2 - 2} \text{ für } n_2 > 2$$
+        \end{minipage}
+    };
+%------------ F-Verteilung Header ---------------------
+\node[fill = black, text=white, font=\bfseries, right=10pt] at (box.north west) 
+{F-Verteilung};
+\end{tikzpicture}
+
+
 \end{multicols*}
