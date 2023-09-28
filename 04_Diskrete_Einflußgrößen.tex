@@ -200,11 +200,12 @@
     \node [mybox] (box){%
         \begin{minipage}{0.3\textwidth}
         Das \tc{Modell mit Effekt-Kodierung} ist gegeben durch
-        $$\bY = (\be \hspace{2mm} Z_1^e(\bC) \dotsm Z_{K-1}^e(\bC)) \begin{pmatrix}
-            \mu \\ \tau_1 \\ \vdots \\ \tau_{K-1}
-        \end{pmatrix} + \bepsilon$$
-        Bei dem Modell mit Effekt-Kodierung gibt es einen Intercept $\mu$ und die $\tau_k$ sind die Abweichungen der $k$-ten Gruppe vom Gesamtmittelwert bzw. vom Intercept $\mu$.
-        Der Effekt der $k$-ten Gruppe ist also $\mu + \tau_k$.
+        \tiny{
+            $$\bY = (\be \hspace{2mm} Z_1^e(\bC) \dotsm Z_{K_C-1}^e(\bC) \hspace{2mm} Z_1^e(\bD) \dotsm Z_{K_D-1}^e(\bD)) \begin{pmatrix}
+            \mu \\ \tau_1 \\ \vdots \\ \tau_{K_C-1} \\ \gamma_1 \\ \vdots \\ \gamma_{K_D-1} \end{pmatrix} + \bepsilon$$
+        }
+        
+        mit $\tau_K = -\sum_{k = 1}^{K-1} \tau_k$ und $\gamma_K = -\sum_{k = 1}^{K-1} \gamma_k$.
         \end{minipage}
     };
 %------------ Modell mit Effekt-Kodierung (mehrfaktoriell) Header ---------------------
