@@ -461,8 +461,6 @@
             \includegraphics[width=0.8\linewidth]{fig/Interaktion_Plot.png} 
         \end{center}
 
-        Note: "Faktor 2" ist hier $D$ und "A1" und "A2" sind hier $C = 1$ und $C=2$.
-        Auf der y-Achse ist der Mittelwert der Gruppe dargestellt.\\
         \vspace{2mm}
 
         In beiden Fällen werden folgende Gleichungen erfüllt:
@@ -487,16 +485,78 @@
         \textbf{Referenz-Kodierung:}
         \begin{align*}
         & \wh{\mu} = -6  & \wh{\gamma_1} &= 8 & \wh{( \tau \gamma )}_{1,1} &= -2 & \wh{( \tau \gamma )}_{2,1} &= 0\\
-        & \wh{\tau_1} = 4 & \wh{\gamma_2} &= 7 & \wh{( \tau \gamma )}_{1,2} &= 1 & \wh{( \tau \gamma )}_{2,2} &= 0\\
+        & \wh{\tau_1} = 8 & \wh{\gamma_2} &= 7 & \wh{( \tau \gamma )}_{1,2} &= 1 & \wh{( \tau \gamma )}_{2,2} &= 0\\
         & \wh{\tau_2} = 0 & \wh{\gamma_3} &= 0 & \wh{( \tau \gamma )}_{1,3} &= 0 & \wh{( \tau \gamma )}_{2,3} &= 0
         \end{align*}
 
-        Man beachte auch, dass sich die Schätzer direkt in dem Plot ablesen lassen.
         \end{minipage}
     };
 %------------ Visualisierung Beispiel Header ---------------------
 \node[fill = blue, text=white, font=\bfseries, right=10pt] at (box.north west) 
 {Visualisierung Beispiel};
+\end{tikzpicture}
+
+%------------ Kodierung Vergleich (mehrfaktoriell) Beispiel---------------
+\begin{tikzpicture}
+    \node [mybox] (box){%
+        \begin{minipage}{0.3\textwidth}
+        Sei $K_C = 2$ und $K_D = 3$ mit $n_{k,l} = 2$ für alle $k=1,2,3$ und $l=1,2$.\\
+        Dann erhalten wir als Designmatrix für das Modell mit Interaktionstermen\\
+        \vspace{2mm}
+
+        \textbf{Effekt-Kodierung}:
+        $$\begin{pmatrix} \bX^e & \bZ^e \end{pmatrix} = \begin{pmatrix}
+            1 & 1 & 1 & 0 & 1 & 0\\ 
+            1 & 1 & 1 & 0 & 1 & 0\\
+            1 & 1 & 0 & 1 & 0 & 1\\
+            1 & 1 & 0 & 1 & 0 & 1\\
+            1 & 1 & -1 & -1 & -1 & -1\\ 
+            1 & 1 & -1 & -1 & -1 & -1\\
+            1 & -1 & 1 & 0 & -1 & 0\\
+            1 & -1 & 1 & 0 & -1 & 0\\
+            1 & -1 & 0 & 1 & 0 & -1\\
+            1 & -1 & 0 & 1 & 0 & -1\\
+            1 & -1 & -1 & -1 & 1 & 1\\
+            1 & -1 & -1 & -1 & 1 & 1
+        \end{pmatrix}$$
+
+        \vspace{2mm}
+        \textbf{Referenz-Kodierung}:
+        $$\begin{pmatrix} \bX & \bZ \end{pmatrix} = \begin{pmatrix}
+            1 & 1 & 1 & 0 & 1 & 0\\
+            1 & 1 & 1 & 0 & 1 & 0\\
+            1 & 1 & 0 & 1 & 0 & 1\\
+            1 & 1 & 0 & 1 & 0 & 1\\
+            1 & 1 & 0 & 0 & 0 & 0\\
+            1 & 1 & 0 & 0 & 0 & 0\\
+            1 & 0 & 1 & 0 & 0 & 0\\
+            1 & 0 & 1 & 0 & 0 & 0\\
+            1 & 0 & 0 & 1 & 0 & 0\\
+            1 & 0 & 0 & 1 & 0 & 0\\ 
+            1 & 0 & 0 & 0 & 0 & 0\\
+            1 & 0 & 0 & 0 & 0 & 0
+        \end{pmatrix}$$
+        \end{minipage}
+    };
+%------------ Modell mit Kodierung Vergleich (mehrfaktoriell) Beispiel Header ---------------------
+\node[fill = blue, text=white, font=\bfseries, right=10pt] at (box.north west) 
+{Kodierung Vergleich (mehrfaktoriell) Beispiel};
+\end{tikzpicture}
+
+%------------ Interaktionsmodell mit stetigen Merkmalen (Kovarianzanalyse) Interpretation ---------------
+\begin{tikzpicture}
+    \node [mybox] (box){%
+        \begin{minipage}{0.3\textwidth}
+        Sei $\bE$ eine metrische Variable und $\bC$ eine diskrete Variable mit $K$ Ausprägungen.
+        Dann ergeben sich die Modelle von oben, wenn wir bei den Modellen ohne Interaktion in der Disgnmatrix eine Spalte 
+        mit den Werten von $\bE$ hinzufügen und bei den Modellen mit Interaktion in der Disgnmatrix die Spalten hinzufügen, 
+        die sich ergeben, wenn man die Spalten der Designmatrix ohne $\bE$ mit den Werten von $\bE$ punktweise multipliziert.
+
+        \end{minipage}
+    };
+%------------ Interaktionsmodell stetigen Merkmalen (Kovarianzanalyse) Header ---------------------
+\node[fill = black, text=white, font=\bfseries, right=10pt] at (box.north west) 
+{Kombination mit stetigen Merkmalen};
 \end{tikzpicture}
 
 
