@@ -543,20 +543,158 @@
 {Kodierung Vergleich (mehrfaktoriell) Beispiel};
 \end{tikzpicture}
 
-%------------ Interaktionsmodell mit stetigen Merkmalen (Kovarianzanalyse) Interpretation ---------------
+%------------ Interaktionsmodell mit stetigen Merkmalen (Kovarianzanalyse)
+%Interpretation ---------------
 \begin{tikzpicture}
     \node [mybox] (box){%
         \begin{minipage}{0.3\textwidth}
-        Sei $\bE$ eine metrische Variable und $\bC$ eine diskrete Variable mit $K$ Ausprägungen.
-        Dann ergeben sich die Modelle von oben, wenn wir bei den Modellen ohne Interaktion in der Disgnmatrix eine Spalte 
-        mit den Werten von $\bE$ hinzufügen und bei den Modellen mit Interaktion in der Disgnmatrix die Spalten hinzufügen, 
-        die sich ergeben, wenn man die Spalten der Designmatrix ohne $\bE$ mit den Werten von $\bE$ punktweise multipliziert.
+        Sei $\bE$ eine metrische Variable und $\bC$ eine diskrete Variable mit
+        $K$ Ausprägungen. Dann ergeben sich die Modelle von oben, wenn wir bei
+        den Modellen ohne Interaktion in der Disgnmatrix eine Spalte mit den
+        Werten von $\bE$ hinzufügen und bei den Modellen mit Interaktion in der
+        Disgnmatrix die Spalten hinzufügen, die sich ergeben, wenn man die
+        Spalten der Designmatrix ohne $\bE$ mit den Werten von $\bE$ punktweise
+        multipliziert.
 
         \end{minipage}
     };
-%------------ Interaktionsmodell stetigen Merkmalen (Kovarianzanalyse) Header ---------------------
-\node[fill = black, text=white, font=\bfseries, right=10pt] at (box.north west) 
+%------------ Interaktionsmodell stetigen Merkmalen (Kovarianzanalyse) Header
+%---------------------
+\node[fill = black, text=white, font=\bfseries, right=10pt] at (box.north west)
 {Kombination mit stetigen Merkmalen};
+\end{tikzpicture}
+
+%------------ Interaktion: zwei kategorische Variablen ---------------
+\begin{tikzpicture}
+    \node [mybox] (box){%
+        \begin{minipage}{0.3\textwidth}
+        Gegeben sei das Regressionsmodell
+        \begin{align*}
+            \bY = &\beta_0 + \beta_1 \bx_1 + \beta_2 \bx_2 + \\
+        &\beta_3 I(\bz_1 = B) + \beta_4 I(\bz_1 = C) + \beta_5 I(\bz_2 = 1) + \\
+        &\beta_6 I(\bz_1 = B, \bz_2 = 1) + \beta_7 I(\bz_1 = C, \bz_2 = 1) + \beps
+        \end{align*}
+        
+        Die geschätzen Koeffizienten sind\\
+        \includegraphics[width = 0.35\textwidth]{fig/Interaction_cat_cat.png}
+        \vspace{2mm}
+
+        Die Interaktionskoeffizienten $z_1B$:$z_21$ und $z_1C$:$z_21$
+        haben nun folgenden Einfluß auf die Interpretation:\\
+        Wenn $z_1 = B$ \textbf{und} $z_2 = 1$, dann steigt $Y$ im Durchschnitt
+        (im Vergleich zur Referenzgruppe $z_1 = A$ und $z_2 = 0$) (cet.par.) um
+        $-2.71 + 2.28 - 0.96 = -1.39$ Einheiten.\\
+        Wenn $z_1 = C$ \textbf{und} $z_2 = 1$, dann steigt $Y$ im Durchschnitt
+        (im Vergleich zur Referenzgruppe $z_1 = A$ und $z_2 = 0$) (cet.par.) um
+        (cet.par.) um $-1.28 + 2.28 - 0.80 = 0.2$ Einheiten.
+        \end{minipage}
+    };
+%------------ Interaktion: eine kategorisch und eine numerische Variable ---------------------
+\node[fill = olive, text=white, font=\bfseries, right=10pt] at (box.north west)
+{Interaktion: zwei kategorische Variablen};
+\end{tikzpicture}
+
+\begin{tikzpicture}
+    \node [mybox] (box){%
+        \begin{minipage}{0.3\textwidth}
+        Gegeben sei das Regressionsmodell
+        \begin{align*}
+            \bY = &\beta_0 + \beta_1 \bx_1 + \beta_2 \bx_2 + \\
+        &\beta_3 I(\bz_1 = B) + \beta_4 I(\bz_1 = C) + \beta_5 I(\bz_2 = 1) + \\
+        &\beta_6 \bx_1 I(\bz_1 = B) + \beta_7 \bx_1 I(\bz_1 = C) + \beps
+        \end{align*}
+        
+        Die geschätzen Koeffizienten sind\\
+        \includegraphics[width = 0.35\textwidth]{fig/Interaction_num_cat.png}
+        \vspace{2mm}
+
+        Der Interaktionskoeffizienten $x_1$:$z_1B$ und $x_1$:$z_1C$ haben nun
+        folgenden Einfluß auf die Interpretation:\\
+        Wenn $x_1$ um eine Einheit steigt \textbf{und} $z_1 = A$, dann steigt
+        $Y$ im Durchschnitt (cet.par.) um $4.0$ Einheiten.\\
+        Wenn $x_1$ um eine Einheit steigt \textbf{und} $z_1 = B$, dann steigt
+        $Y$ im Durchschnitt (cet.par.) um $4.0 - 2.98 = 1.02$ Einheiten.\\
+        Wenn $x_1$ um eine Einheit steigt \textbf{und} $z_1 = C$, dann steigt
+        $Y$ im Durchschnitt (cet.par.) um $4.0 - 1.49 = 2.51$ Einheiten.
+        \end{minipage}
+    };
+%------------ Interaktion: eine kategorisch und eine numerische Variable Header ---------------------
+\node[fill = olive, text=white, font=\bfseries, right=10pt] at (box.north west)
+{Interaktion: kategorisch und numerisch};
+\end{tikzpicture}
+
+%------------ Interaktion: zwei numerische Variablen ---------------
+\begin{tikzpicture}
+    \node [mybox] (box){%
+        \begin{minipage}{0.3\textwidth}
+        Gegeben sei das Regressionsmodell
+        \begin{align*}
+            \bY = &\beta_0 + \beta_1 \bx_1 + \beta_2 \bx_2 + \\
+        &\beta_3 I(\bz_1 = B) + \beta_4 I(\bz_1 = C) + \beta_5 I(\bz_2 = 1) + \\
+        &\beta_6 \bx_1 \bx_2 + \beps
+        \end{align*}
+        
+        Die geschätzen Koeffizienten sind\\
+        \includegraphics[width = 0.35\textwidth]{fig/Interaction_num_num.png}
+        \vspace{2mm}
+
+        Der Interaktionskoeffizient $x_1$:$x_2$ hat nun folgenden Einfluß auf die Interpretation:\\
+        Wenn $x_1$ um eine Einheit steigt, dann steigt $Y$ im Durchschnitt
+        (cet.par.) um $2.012 + x_2 \cdot 0.5$ Einheiten.\\
+        Wenn $x_2$ um eine Einheit steigt, dann steigt $Y$ im Durchschnitt
+        (cet.par.) um $3.02 + x_1 \cdot 0.5$ Einheiten.
+        \end{minipage}
+    };
+%------------ Interaktion: zwei numerische Variablen Header ---------------------
+\node[fill = olive, text=white, font=\bfseries, right=10pt] at (box.north west)
+{Interaktion: zwei numerische Variablen};
+\end{tikzpicture}
+
+%------------ ANOVA ---------------
+\begin{tikzpicture}
+    \node [mybox] (box){%
+        \begin{minipage}{0.3\textwidth}
+        
+        \begin{itemize}
+            \item \textbf{\tc{ANOVA}}:\\
+            Analysis of Variance bzw. Varianzanalyse testet, ob sich der
+            Mittelwert (einer metrischen Zielvariable) in verschiedenen Gruppen
+            (diskrete Einflussvariable) unterscheidet.
+            \item \textbf{\tc{ANCOVA}}:\\
+            Analysis of Covariance bzw. Kovarianzanalyse ist identisch zur
+            ANOVA, es wird jedoch noch für weitere Kovariablen kontrolliert.
+            Sprich man testet also auf Mittelwertsgleichheit zwischen den
+            Ausprägungen (Gruppen) der diskreten Kovariable und kontrolliert
+            zusätzlich dabei auf weitere (metrische oder diskrete)
+            Kovariablen, falls diese vermutete Störfaktoren sind oder
+            eventuell einen Effekt haben, der nicht von Interesse ist.
+            \item \textbf{\tc{t-Test}}:\\ 
+            Der klassische t-Test für Mittelwertsvergleich (mit
+            Varianzhomogenität) ist ein Spezialfall der ANOVA. Die diskrete
+            Einflussgröße hat hier nur zwei Ausprägungen, wohingegen bei
+            der ANOVA mehrere Ausprägungen der diskreten Kovariable möglich
+            sind.
+            \item \textbf{\tc{Einfaktorielle Varianzanalyse}}:\\
+            Die einfaktorlielle Varianzanalyse ist eine ANOVA mit nur einer
+            interessierenden diskreten Einflussgröße (welche mehrere
+            Ausprägungen haben kann).
+            \item \textbf{\tc{Mehrfaktorielle Varianzanalyse}}:\\
+            Bei der mehrfaktoriellen Varianzanalyse ist man an mehreren
+            diskreten Einflussgrößen (welche je mehrere Ausprägungen haben
+            können) interessiert. Üblicherweise wird hier auch eine
+            Interaktion zwischen den Größen mit aufgenommen.
+        \end{itemize}  
+        Alle Methoden testen, ob diskrete Einflussgrößen (Gruppen) einen
+        signifikanten Effekt auf die metrische Zielgröße haben (es also
+        Unterschiede zwischen den Gruppen gibt). Dabei hat der t-Test eine
+        Einflussgröße mit zwei Ausprägungen, die einfaktorielle Varianzanalyse
+        eine Einflussgröße mit mehreren Ausprägungen, die mehrfaktorielle
+        Varianzanalyse mehrere Einflussgrößen mehreren Ausprägungen.
+        \end{minipage}
+    };
+%------------ ANOVA Header ---------------------
+\node[fill = black, text=white, font=\bfseries, right=10pt] at (box.north west)
+{ANOVA und ähnliche Begriffe};
 \end{tikzpicture}
 
 

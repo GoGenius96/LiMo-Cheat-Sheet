@@ -299,10 +299,12 @@ confint(reg, level = 0.95)
 \begin{tikzpicture}
 \node [mybox] (box){%
     \begin{minipage}{0.3\textwidth}
-    $R^2$ ist abhängig von $X$. Das heißt über mehrere Studien hinweg, die das gleiche messen, ist
-    $R^2$ nur vergleichbar, wenn auch $X$ vergleichbar ist. Je sichererer wir mit unserem Schätzer sein
-    wollen, desto höher sollten wir die Varianz von $X$ einstellen. Gegeben, dass der Zusammenhang tatsächlich linear
-    ist, würde eine höhere Varianz von $X$ zu einer geringeren Varianz von $\hbe1$ führen.\\
+    $R^2$ ist abhängig von $X$. Das heißt über mehrere Studien hinweg, die das
+    gleiche messen, ist $R^2$ nur vergleichbar, wenn auch $X$ vergleichbar ist.
+    Je sichererer wir mit unserem Schätzer sein wollen, desto höher sollten wir
+    die Varianz von $X$ einstellen. Gegeben, dass der Zusammenhang tatsächlich
+    linear ist, würde eine höhere Varianz von $X$ zu einer geringeren Varianz
+    von $\hbe1$ führen.\\
 
     Im multiplen Reg.modell ist es KEINE Annahme, dass $x_i, x_j$ unabhängig voneinander sind.
     Es wäre nur praktisch für die Interpretation der Effekte. Das "magische" am multiplen Reg.modell
@@ -318,6 +320,49 @@ confint(reg, level = 0.95)
 
 
 
+%------------ Annahmen des linearen Regressionsmodells ---------------
+\begin{tikzpicture}
+    \node [mybox] (box){%
+        \begin{minipage}{0.3\textwidth}
+        Gegeben sei das einfache (oder multiple) lineare Regressionsmodell mit
+        \setcounter{equation}{0}
+        \begin{align}
+            \bY &= \bX \bbeta + \beps\\
+            \E(\beps) &= \bnull\\
+            \V(\eps_i) &= \ssd , \text{ für alle } i = 1,\dots,n\\
+            \eps_i & \text{ sind paarweise unabhängig voneinander}\\
+            \eps_i &\sim \Ncal(0,\ssd), \text{ für alle } i = 1,\dots,n
+        \end{align}
+
+        Die folgende Tabelle gibt an, welche Annahmen für die jeweiligen
+        Schätzer, Eigenschaften, Größen etc. benötigt werden.
+
+        \begin{tabular}{|l|l|l|l|l|l|}
+            \hline
+            & (1) & (2) & (3) & (4) & (5)\\
+            \hline
+            KQ-Schätzer & $\checkmark$ & & & &\\
+            \hline
+            ML-Schätzer & $\checkmark$ & $\checkmark$ & $\checkmark$ & $\checkmark$ & $\checkmark$\\
+            \hline
+            $\E(\hbbeta) = \bbeta$ & $\checkmark$ & $\checkmark$ & & & \\
+            \hline
+            $\hbbeta \sim \Ncal(\bbeta, \V(\hbbeta))$ & $\checkmark$ & $\checkmark$ & $\checkmark$ & $\checkmark$ & ($\checkmark$)\\
+            \hline
+            Konfidenzintervalle & $\checkmark$ & $\checkmark$ & $\checkmark$ & $\checkmark$ & ($\checkmark$)\\
+            \hline
+            Prädiktionsintervalle & $\checkmark$ & $\checkmark$ & $\checkmark$ & $\checkmark$ & $\checkmark$\\
+            \hline
+        \end{tabular}
+
+        ($\checkmark$) bedeutet, dass die Annahme nicht benötigt wird, wenn der Stichprobenumfang $n$ groß genug ist.
+        \end{minipage}
+    };
+%------------ Annahmen des linearen Regressionsmodells Header ---------------------
+\node[fill = purple, text=white, font=\bfseries, right=10pt] at (box.north west)
+{Annahmen des linearen Regressionsmodells};
+\end{tikzpicture}
+    
 
 
 
