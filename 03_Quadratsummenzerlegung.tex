@@ -108,6 +108,43 @@
 {Mittlere Quadratsummen};
 \end{tikzpicture}
 
+%------------ R^2 ---------------
+\begin{tikzpicture}
+    \node [mybox] (box){%
+        \begin{minipage}{0.3\textwidth}
+        Gegeben sei das multiple lineare Regressionsmodell mit allen Annahmen.
+        Dann definieren wir das \tc{Bestimmtheitsmaß} $R^2$ als
+        $$R^2 = \frac{SSM}{SST} = 1 - \frac{SSE}{SST} = r_{\bY \hbY}^2 \in [0,1]$$
+        wobei $r_{\bY \hbY}$ der Korrelationskoeffizient zwischen $\bY$ und $\hbY$ ist.
+
+        Wir interpretieren $R^2$ als den Anteil der Varianz von $\bY$, die durch
+        das Modell erklärt wird. Ein hohes $R^2$ deutet darauf hin, dass wir
+        unser Modell gut nutzen können, um $\bY$ zu erklären. $R^2$ steigt mit
+        steigender Anzahl an Kovariablen, auch wenn diese kaum/keine
+        Erklärungskraft haben. Es ist daher nicht sinnvoll, $R^2$ zwischen
+        Modellen zu vergleichen, die unterschiedlich viele Kovariablen haben.
+        Hierfür nutzen wir das
+        \tc{adjustierten Bestimmtheitsmaß} 
+        \begin{align*}
+            R_{\text{adj}}^2 &= \frac{MSM}{MST} = 1 - \frac{MSE}{MST} = 1 -
+        \frac{SSE/(n-1)}{SST/(n-p')} \\
+        & = 1 - \frac{n-1}{n-p'}(1 - R^2)
+        \end{align*}
+        Für $n \gg p'$ gilt $R_{\text{adj}}^2 \approx R^2$.\\
+        \tc{!} Bei einem Modell ohne Absolutglied ist $R^2$ nach obiger Definition
+        nicht sinnvoll, da es dann auch negative Werte annehmen kann. Das kommt daher, dass
+        die Zerlegung $SST = SSE + SSM$ nicht mehr gilt.
+        Stattdessen ist es sinnvoll, $R^2$ als $\frac{SSM^*}{SST^*} = 1 - \frac{SSE}{SST^*}$ zu definieren.
+
+        
+
+        \end{minipage}
+    };
+%------------ R^2 Header ---------------------
+\node[fill = black, text=white, font=\bfseries, right=10pt] at (box.north west) 
+{$R^2$};
+\end{tikzpicture}
+
 %------------ Multivariate Normalverteilung ---------------
 \begin{tikzpicture}
     \node [mybox] (box){%
@@ -274,7 +311,7 @@
         
         Wir können damit den \tc{Overall-Test} durchführen, um die Hypothese
         $$H_0^O: \gb{1} = \dots = \gb{{p'}} = 0$$
-        zu testen. Wir lehnen $H_0^O$ ab, wenn \\$F_0 > F_{1-\alpha}(p'-1, n-p')$.
+        bzw. $R^2 = 0$ zu testen. Wir lehnen $H_0^O$ ab, wenn \\$F_0 > F_{1-\alpha}(p'-1, n-p')$.
         \end{minipage}
     };
 %------------ Overall-Test Header ---------------------
@@ -350,7 +387,7 @@
         $$M_k: \bY = \beta_{0} + \beta_{1}\bx + \dots + \beta_{k}\bx_{k} +
         \epsilon$$ Die zu dem Modell $M_k$ gehörende Quadratsumme heißt
         \tc{sequentielle Quadratsumme} und wird definiert als
-        $$R(\gb{k} | \gb{0}, \dots, \gb{{k-1}}) = SSE(M_{k}) - SSE(M_{{k-1}})$$ für $k = 1, \dots, p'$.
+        $$R(\gb{k} | \gb{0}, \dots, \gb{{k-1}}) = SSE(M_{k-1}) - SSE(M_{{k}})$$ für $k = 1, \dots, p'$.
 
         Es gilt
         $$SST = \sum_{k=1}^{p'} R(\gb{k} | \gb{0}, \dots, \gb{{k-1}}) + SSE.$$
@@ -434,7 +471,7 @@ car::linearHypothesis(model, A, c)
         mit
         $$\hat{\sd}_{\hat{Y}_{n+1}} = \hat{\sd}^2 \Bigr[ 1 + \bx_{n+1}^\top (\bX^\top \bX)^{-1} \bx_{n+1} \Bigr].$$
 
-        Wir konstruieren das \tc{Prognoseintervall} für $\E(Y_{n+1}) = {\mu}_{n+1}$ zum Niveau $1 - \alpha$ als
+        Wir konstruieren das \tc{Konfidenzintervall} für $\E(Y_{n+1}) = {\mu}_{n+1}$ zum Niveau $1 - \alpha$ als
         $$[\ \hat{Y}_{n+1} - \hssd_{\hat{\mu}_{n+1}} t_{1 - \alpha/2}(n-p'); \hat{Y}_{n+1} + \hssd_{\hat{\mu}_{n+1}} t_{1 - \alpha/2}(n-p') ]\ $$
         mit
         $$\hssd_{\hat{\mu}_{n+1}} = \hssd \Bigr[\bx_{n+1}^\top (\bX^\top \bX)^{-1} \bx_{n+1} \Bigr].$$

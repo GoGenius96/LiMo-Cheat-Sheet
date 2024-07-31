@@ -180,6 +180,49 @@
 {Random Intercept Modell};
 \end{tikzpicture}
 
+%------------ ICC Modell ---------------
+\begin{tikzpicture}
+    \node [mybox] (box){
+    \begin{minipage}{0.3\textwidth}
+
+    Sei ein Random Intercept Modell gegeben durch
+    $$Y_{ij} = \bx_{ij}^\top\bbeta + \gamma_{0i} + \eps_{ij}, \quad i =
+    1,\dots,K, \quad j = 1,\dots,n_i$$ mit $\eps_{ij} \sim \Ncal(0,\ssd),
+    i.i.d.$ und $\gamma_{0i} \sim \Ncal(0, \ssd_{\gamma_0}), i.i.d.$ und
+    $\sum_{i = 1}^{K} n_i = n$ und der Annahme, dass die $\eps_{ij}$ unabhängig
+    von den $\gamma_{0i}$ sind.\\
+
+    Dann gilt für die \tc{Intra-Class Correlation} (ICC)
+    folgende Interpretationen:
+    \begin{itemize}
+        \item \textbf{Varianzkomponenten}:\\
+        Der ICC quantifiziert den Anteil der Gesamtvarianz, der auf die
+        Gruppierungsstruktur in den Daten (die random effect variable) 
+        zurückzuführen ist.
+        \item \textbf{Homogenität innerhalb von Gruppen}:\\
+        Der ICC gibt an, wie stark die Beobachtungen innerhalb einer Gruppe
+        korreliert sind. Bei Clustern bedeutet ein hoher ICC, dass die
+        UEs innerhalb eines Clusters ähnliche Werte haben.
+        Bei Longitudinaldaten bedeutet ein hoher ICC, dass die Beobachtungen
+        innerhalb einer UE über die Zeit ähnliche Werte haben.
+    \end{itemize}
+
+    \includegraphics[width=0.8\textwidth]{fig/RandomEffect.png}
+
+    In diesem Beispiel ist die ICC gegeben durch
+    \begin{align*}
+    ICC &= \corr(Y_{ij}, Y_{il})\\
+    &= \frac{\ssd_{\gamma_0}}{\ssd_{\gamma_0} + \ssd} \\
+    &= \frac{0.1318}{0.1318 + 0.003} = 0.977.
+    \end{align*}
+
+    \end{minipage}
+    };
+%------------ ICC Header ---------------------
+\node[fill = purple, text=white, font=\bfseries, right=10pt] at (box.north west) 
+{ICC Interpretation};
+\end{tikzpicture}
+
 %------------ Logistisches Regressionsmodell ---------------
 \begin{tikzpicture}
     \node [mybox] (box){
@@ -222,10 +265,10 @@
     \begin{itemize}
         \item $\pi_i = \P(Y_i = 1 \mid \bx_i) = h(\bx_i^\top\bbeta)$
         \item Wenn sich $x_k$ um eine Einheit erhöht, so ändert sich die
-        log-odds der Wahrscheinlichkeit (ceteris paribus) im Erwartungswert um
+        log-odds der Wahrscheinlichkeit (ceteris paribus) um
         $\beta_k$ Einheiten.
         \item Wenn sich $x_k$ um eine Einheit erhöht, so ändern sich die Odds
-        $\frac{\pi_i}{1 - \pi_i}$ (ceteris paribus) im Erwartungswert um den
+        $\frac{\pi_i}{1 - \pi_i}$ (ceteris paribus) um den
         Faktor $\exp(\beta_k)$.
         \item Wenn $\beta_k > 0$, so steigt die Wahrscheinlichkeit $Y_i = 1$ mit
         steigendem $x_k$ (und umgekehrt).
@@ -266,19 +309,20 @@
     \begin{minipage}{0.3\textwidth}
     
     Die log-likelihood Funktion lautet
-    $$\ell(\bbeta) = \sum_{i = 1}^{n} y_i\log(\pi_i) + (1 - y_i)\log(1 - \pi_i).$$
-    Mit der Linkfunktion und Responsefunktion können wir die Likelihood
-    umschreiben als
-    $$\ell(\bbeta) = \sum_{i = 1}^{n} y_i\bx_i^\top\bbeta - \log(1 + \exp(\bx_i^\top\bbeta)).$$
-    Daraus ergibt sich die Scorefunktion
-    $$s(\bbeta)= \frac{\partial \ell(\bbeta)}{\partial \bbeta} = \sum_{i = 1}^{n} \bx_i(y_i - h(\bx_i^\top\bbeta)).$$
-    Die (observed) Fisher Matrix ist
-    $$\bI(\bbeta) = \E(-\frac{\partial^2 \ell(\bbeta)}{\partial \bbeta\partial \bbeta^\top}) = \sum_{i = 1}^{n} \bx_i\bx_i^\top h(\bx_i^\top\bbeta)(1 - h(\bx_i^\top\bbeta)).$$
+    $$\ell(\bbeta) = \sum_{i = 1}^{n} y_i\log(\pi_i) + (1 - y_i)\log(1 -
+    \pi_i).$$ Mit der Linkfunktion und Responsefunktion können wir die
+    Likelihood umschreiben als
+    $$\ell(\bbeta) = \sum_{i = 1}^{n} y_i\bx_i^\top\bbeta - \log(1 +
+    \exp(\bx_i^\top\bbeta)).$$ Daraus ergibt sich die Scorefunktion
+    $$s(\bbeta)= \frac{\partial \ell(\bbeta)}{\partial \bbeta} = \sum_{i =
+    1}^{n} \bx_i(y_i - h(\bx_i^\top\bbeta)).$$ Die (observed) Fisher Matrix ist
+    $$\bI(\bbeta) = \E(-\frac{\partial^2 \ell(\bbeta)}{\partial \bbeta\partial
+    \bbeta^\top}) = \sum_{i = 1}^{n} \bx_i\bx_i^\top h(\bx_i^\top\bbeta)(1 -
+    h(\bx_i^\top\bbeta)).$$
     
     Daraus ergibt sich der \tc{MLE Schätzer} für $\bbeta$ durch
-    $$\hbbeta = (\bX^\top\bX)^{-1}\bX^\top\bY$$
-    und es gilt
-    $\V(\hbbeta) \approx \bI^{-1}(\hbbeta)$.
+    $$\hbbeta = (\bX^\top\bX)^{-1}\bX^\top\bY$$ und es gilt $\V(\hbbeta) \approx
+    \bI^{-1}(\hbbeta)$.
     \end{minipage}
     };
 %------------ MLE Header ---------------------

@@ -697,5 +697,107 @@
 {ANOVA und ähnliche Begriffe};
 \end{tikzpicture}
 
+%------------ ANOVA ein Modell ---------------
+\begin{tikzpicture}
+    \node [mybox] (box){%
+        \begin{minipage}{0.3\textwidth}
+        
+        Gegeben sei ein Modell mit zwei kategorischen Einflussgrößen $z1$ und $z2$ und
+        einer metrischen Einflussgröße $x1$ und einer Interaktion zwischen $z1$ und $z2$.
+        Gegeben sei folgender Output einer ANOVA:
+
+        \begin{center}
+            \includegraphics[width = \textwidth]{fig/ANOVA.png}
+        \end{center}
+
+        \begin{itemize}
+            \item \textbf{df}: degrees of freedom geben bei den
+            Variablen an, wie viele Parameter zu dieser Variable geschätzt
+            wurden (ohne Intercept mitzuzählen). D.h. für $x1$ wurde 1
+            Parameter geschätzt, für $z1$ wurden 2 Parameter geschätzt und für
+            $z2$ wurde 1 Parameter geschätzt und für die Interaktion wurden 2
+            Parameter geschätzt.\\
+            \textbf{Notiz:} df für die Residuals ist $n - p - 1$. Kann man
+            nutzen um $n$ zu berechnen. Hier z.B.: 
+            \begin{align*}
+            n &= df_{x1} + df_{z1} + df_{z2} + df_{z1:z2} + df_{Residuals} + 1\\
+            &= 1 + 2 + 1 + 2 + 293 + 1 = 300
+            \end{align*}
+
+            \item \textbf{Sum Sq}: Summe der Quadrate gibt an, wie viel
+            Varianz durch die jeweilige Variable erklärt wird. Für die Variablen ist das
+            jeweils der $SSM$ und für die Residuen ist das der $SSE$.
+            Es gilt: \begin{align*}
+                SST &= SSM + SSE \\
+                &= SSM_{x1} + SSM_{z1} + SSM_{z2} + SSM_{z1:z2}\\
+                & \quad+SSE_{Residuals}
+            \end{align*}
+            und somit $R^2 = \frac{SSM_{x1} +
+            SSM_{z1} + SSM_{z2} + SSM_{z1:z2}}{SST}.$
+
+            \item \textbf{Mean Sq}: Analog zu Sum Sq, aber eben $MSE$ und $MSM$.
+            Berechnet als $SSM/df$ und $SSE/df$. \tc{!} Werte sind hier gerundet.
+
+            \item \textbf{F-Value}: Der F-Wert ist ein Teststatistik, die
+            angibt, ob die erklärende Variable signifikant für das Modell ist.
+            Berechnet sich als $F = \frac{MSM}{MSE}$. $MSE$ ist für alle Variablen gleich,
+            hier also $MSE_{Residuals} = 258$.
+
+        \end{itemize}
+
+
+        \end{minipage}
+    };
+%------------ ANOVA ein Modell Header ---------------------
+\node[fill = olive, text=white, font=\bfseries, right=10pt] at (box.north west)
+{ANOVA ein Modell};
+\end{tikzpicture}
+
+
+%------------ ANOVA mehrere Modelle ---------------
+\begin{tikzpicture}
+    \node [mybox] (box){%
+        \begin{minipage}{0.3\textwidth}
+        
+        Gegeben seien drei Modelle mit kategorischen Einflussgrößen $z1$ und $z2$ und
+        einer metrischen Einflussgröße $x1$. Wir vergleichen die drei Modelle mittels
+        ANOVA:
+
+        \begin{center}
+            \includegraphics[width = \textwidth]{fig/ANOVA_modelselektion.png}
+        \end{center}
+
+        \begin{itemize}
+            \item \textbf{Res. Df}: degrees of freedom für die Residuals.
+            Bei gleichem $n$ kann man hier den Unterschied in der Anzahl der
+            geschätzten Parameter sehen. Hier hat das dritte Modell die
+            meisten Parameter geschätzt.
+
+            \item \textbf{RSS}: Residual Sum of Squares gibt an, wie viel
+            Varianz \textbf{nicht} durch das Modell erklärt wird. Je kleiner, desto
+            besser.
+
+            \item \textbf{Df}: degrees of freedom geben an, wie viel \textbf{mehr} oder
+            \textbf{weniger} Parameter geschätzt wurden im Vergleich zum
+            vorherigen Modell. Hier wurde bei Model 2 ein Parameter mehr geschätzt
+            als bei Model 1 und bei Model 3 zwei Parameter mehr als bei Model 2.
+
+            \item \textbf{Sum of Sq}: Wie viel Varianz durch das Modell \textbf{zusätzlich}
+            erklärt wird im Vergleich zum vorherigen Modell. Einfach die Differenz
+            der $RSS$-Werte.
+
+            \item \textbf{F-value}: Gibt an, ob das Modell signifikant besser
+            ist als das vorherige Modell. Berechnet sich als
+            $F = \frac{\frac{\text{Sum of Sq}}{Df}}{(\frac{\text{RSS}}{\text{Res.Df}})}$.
+
+        \end{itemize}
+
+
+        \end{minipage}
+    };
+%------------ ANOVA mehrere Modelle Header ---------------------
+\node[fill = olive, text=white, font=\bfseries, right=10pt] at (box.north west)
+{ANOVA mehrere Modelle};
+\end{tikzpicture}
 
 \end{multicols*}
