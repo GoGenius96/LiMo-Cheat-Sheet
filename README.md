@@ -1,6 +1,6 @@
-# Lineare-Algebra-Cheat-Sheet
+# Lineare-Modellierung-Cheat-Sheet
 
-Zusammenfassung von Lineare Algebra für Statistik
+Zusammenfassung von Lineare Modellierung für Statistik
 
 Definition sind schwarz  
 Sätze/Theoreme/Lemmatas/etc. sind blau  
